@@ -258,8 +258,9 @@ export default function RewardsManager() {
           return (
             <div
               key={reward.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-gray-200 overflow-hidden"
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-gray-200 overflow-hidden flex flex-col"
             >
+              {/* Image Section */}
               <div
                 className={`h-40 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
               >
@@ -273,9 +274,13 @@ export default function RewardsManager() {
                   <Icon className="w-12 h-12 text-white opacity-80" />
                 )}
               </div>
-              <div className="p-4">
+
+              {/* Content Section */}
+              <div className="p-4 flex flex-col flex-grow">
                 <h3 className="font-bold text-gray-800 mb-1">{reward.title}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                <p
+                  className={`text-sm text-gray-600 mb-3 transition-all duration-300 whitespace-pre-line`}
+                >
                   {reward.description}
                 </p>
 
@@ -293,7 +298,8 @@ export default function RewardsManager() {
                   )}
                 </div>
 
-                <div className="flex gap-2">
+                {/* Push button to bottom */}
+                <div className="flex gap-2 mt-auto">
                   <button
                     onClick={() => handleDelete(reward.id)}
                     className="flex-1 px-3 py-2 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition-colors text-sm"
