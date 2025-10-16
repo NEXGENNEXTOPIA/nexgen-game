@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import termsPDF from "../terms-and-conditions.pdf";
 
 export default function RewardsManager() {
   const { rewards, createReward, deleteReward } = useApp();
@@ -108,20 +109,43 @@ export default function RewardsManager() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800">Rewards Manager</h2>
-          <p className="text-gray-600">
-            Create and manage rewards for the marketplace
-          </p>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800">
+              Rewards Manager
+            </h2>
+            <p className="text-gray-600">
+              Create and manage rewards for the marketplace
+            </p>
+          </div>
+
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-600 to-orange-600 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105"
+          >
+            {showForm ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Plus className="w-5 h-5" />
+            )}
+            {showForm ? "Cancel" : "New Reward"}
+          </button>
         </div>
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-600 to-orange-600 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105"
-        >
-          {showForm ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-          {showForm ? "Cancel" : "New Reward"}
-        </button>
+
+        {/* 🔽 Terms & Conditions link below header */}
+        <p className="text-sm text-gray-500">
+          By creating rewards, you agree to our{" "}
+          <a
+            href={termsPDF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-pink-600 font-semibold hover:underline"
+          >
+            Terms & Conditions
+          </a>
+          .
+        </p>
       </div>
 
       {showForm && (
