@@ -1,6 +1,7 @@
 import { ShoppingBag, Clock, Gift, Sparkles, Star } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { Reward } from "../types";
+import termsPDF from "../terms-and-conditions.pdf";
 
 export default function RewardsMarketplace() {
   const { currentUser, rewards, redeemReward } = useApp();
@@ -48,6 +49,20 @@ export default function RewardsMarketplace() {
         <p className="text-pink-100 text-lg mb-4">
           Exchange your hard-earned points for awesome rewards!
         </p>
+        {/* 🔽 Terms & Conditions link below header */}
+        <p className="text-sm text-pink-100 ">
+          By creating rewards, you agree to our{" "}
+          <a
+            href={termsPDF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 font-semibold hover:underline"
+          >
+            Terms & Conditions
+          </a>
+          .
+        </p>
+        <br />
         <div className="flex items-center gap-2 bg-white/20 rounded-xl px-6 py-3 backdrop-blur-sm w-fit">
           <Star className="w-6 h-6 text-yellow-300" />
           <span className="text-2xl font-black">
