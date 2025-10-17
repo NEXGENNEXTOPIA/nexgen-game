@@ -96,14 +96,15 @@ export default function RewardsMarketplace() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {categoryRewards.map((reward) => (
-                <div
+                 <div
                   key={reward.id}
-                  className={`bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transition-all ${
-                    canAfford(reward) && !redeeming ? "hover:scale-105 hover:shadow-2xl" : ""
-                  } ${!canAfford(reward) ? "opacity-75" : ""} ${redeeming === reward.id ? "opacity-90" : ""}`}
+                  className={`bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transition-all hover:scale-105 ${
+                    canAfford(reward) ? "hover:shadow-2xl" : "opacity-75"
+                  }`}
                 >
+                  {/* Image */}
                   <div
-                    className={`h-32 sm:h-40 lg:h-44 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
+                    className={`h-44 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
                   >
                     {reward.imageUrl ? (
                       <img
@@ -112,70 +113,63 @@ export default function RewardsMarketplace() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <Icon className="w-12 h-12 sm:w-16 sm:h-16 text-white opacity-80" />
+                      <Icon className="w-16 h-16 text-white opacity-80" />
                     )}
                   </div>
 
-                  <div className="p-4 sm:p-6">
-                    <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                  {/* Card Content */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h4 className="text-xl font-bold text-gray-800 mb-2">
                       {reward.title}
                     </h4>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    <p className="text-sm text-gray-600 whitespace-pre-line mb-4">
                       {reward.description}
                     </p>
 
-                    {reward.stockQuantity !== undefined && reward.stockQuantity !== null && (
-                      <div className="mb-3 sm:mb-4">
-                        <div className="flex items-center justify-between text-sm mb-1">
-                          <span className="text-gray-600">Stock</span>
-                          <span className="font-semibold text-gray-800">
-                            {reward.stockQuantity} left
+                    {/* Bottom section fixed to bottom */}
+                    <div className="mt-auto">
+                      {reward.stockQuantity !== undefined && (
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-sm mb-1">
+                            <span className="text-gray-600">Stock</span>
+                            <span className="font-semibold text-gray-800">
+                              {reward.stockQuantity} left
+                            </span>
+                          </div>
+                          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full bg-gradient-to-r ${gradient} rounded-full transition-all`}
+                              style={{
+                                width: `${Math.min(
+                                  (reward.stockQuantity / 10) * 100,
+                                  100
+                                )}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Star className="w-5 h-5 text-yellow-500" />
+                          <span className="text-2xl font-black text-gray-800">
+                            {reward.pointsCost}
                           </span>
                         </div>
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full bg-gradient-to-r ${gradient} rounded-full transition-all`}
-                            style={{
-                              width: `${Math.min(
-                                (reward.stockQuantity / 10) * 100,
-                                100
-                              )}%`,
-                            }}
-                          />
-                        </div>
-                      </div>
-                    )}
 
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" />
-                        <span className="text-xl sm:text-2xl font-black text-gray-800">
-                          {reward.pointsCost}
-                        </span>
+                        <button
+                          onClick={() => handleRedeem(reward)}
+                          disabled={!canAfford(reward)}
+                          className={`px-6 py-3 rounded-xl font-bold transition-all ${
+                            canAfford(reward)
+                              ? `bg-gradient-to-r ${gradient} text-white hover:shadow-lg hover:scale-105`
+                              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                          }`}
+                        >
+                          {canAfford(reward) ? "Redeem" : "Not Enough"}
+                        </button>
                       </div>
-
-                      <button
-                        onClick={() => handleRedeem(reward)}
-                        disabled={!canAfford(reward) || redeeming !== null}
-                        className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold transition-all flex items-center gap-2 text-sm sm:text-base ${
-                          canAfford(reward) && !redeeming
-                            ? `bg-gradient-to-r ${gradient} text-white hover:shadow-lg hover:scale-105`
-                            : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                        } ${redeeming === reward.id ? "opacity-80" : ""}`}
-                      >
-                        {redeeming === reward.id ? (
-                          <>
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                            <span>Redeeming...</span>
-                          </>
-                        ) : reward.stockQuantity !== undefined && reward.stockQuantity !== null && reward.stockQuantity <= 0 ? (
-                          "Out of Stock"
-                        ) : canAfford(reward) ? (
-                          "Redeem"
-                        ) : (
-                          "Not Enough"
-                        )}
-                      </button>
                     </div>
                   </div>
                 </div>
