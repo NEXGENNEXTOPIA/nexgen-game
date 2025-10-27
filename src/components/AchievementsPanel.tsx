@@ -43,7 +43,7 @@ export default function AchievementsPanel() {
       <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-8 text-white shadow-xl">
         <div className="flex items-center gap-3 mb-4">
           <Trophy className="w-10 h-10" />
-          <h2 className="text-3xl font-black">Achievements</h2>
+          <h2 className="text-3xl font-black">Nexops Quest</h2>
         </div>
         <p className="text-orange-100 text-lg mb-6">
           Unlock achievements and earn bonus points!
