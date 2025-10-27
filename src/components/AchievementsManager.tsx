@@ -87,7 +87,7 @@ export default function AchievementsManager() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-gray-800">
-            Achievements Manager
+            Nexops Quest Manager
           </h2>
           <p className="text-gray-600">
             Create and manage achievements for all users
@@ -98,7 +98,7 @@ export default function AchievementsManager() {
           className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105"
         >
           {showForm ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-          {showForm ? "Cancel" : "New Achievement"}
+          {showForm ? "Cancel" : "New Quest"}
         </button>
       </div>
 
@@ -203,7 +203,7 @@ export default function AchievementsManager() {
               disabled={isSubmitting}
               className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold hover:shadow-xl transition-all disabled:opacity-50"
             >
-              {isSubmitting ? "Creating..." : "Create Achievement"}
+              {isSubmitting ? "Creating..." : "Create Quest"}
             </button>
           </form>
         </div>
