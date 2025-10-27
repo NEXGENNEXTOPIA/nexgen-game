@@ -67,7 +67,7 @@ function App() {
     },
     {
       id: "achievements",
-      label: "Achievements",
+      label: "Nexops Quest",
       icon: Award,
       forRole: ["employee", "admin"],
     },
@@ -87,7 +87,7 @@ function App() {
   const adminTabs = [
     { id: "admin", label: "Control Panel", icon: Shield },
     { id: "employees", label: "Employees", icon: Users },
-    { id: "manage-achievements", label: "Achievements", icon: Award },
+    { id: "manage-achievements", label: "Nexops Quest", icon: Award },
     { id: "manage-rewards", label: "Rewards", icon: Gift },
     { id: "leaderboard", label: "Leaderboard", icon: Trophy },
     // { id: "analytics", label: "Analytics", icon: BarChart3 },
